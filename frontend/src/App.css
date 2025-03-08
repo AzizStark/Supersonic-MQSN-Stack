@@ -1,27 +1,166 @@
+/* Variables for consistent theming */
+:root {
+  --primary-color: #3a3a3a;
+  --paper-color: #f8f5f0;
+  --accent-color: #826a51;
+  --error-color: #a94442;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --font-serif: "Garamond", "Georgia", serif;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Root container styling */
 #root {
-  max-width: 1280px;
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.solid:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Global body styling */
+body {
+  background-color: #ece8e1;
+  color: var(--primary-color);
+  font-family: var(--font-serif);
 }
 
-.card {
-  padding: 2em;
+/* Main container for the poem display */
+.poem-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
 }
 
-.read-the-docs {
-  color: #888;
+/* Card styling for displaying poems */
+.poem-card {
+  background-color: var(--paper-color);
+  border-radius: 5px;
+  box-shadow: 0 3px 15px var(--shadow-color);
+  padding: 3rem 4rem;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Poem title styling */
+.poem-title {
+  color: var(--accent-color);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+/* Poem content styling */
+.poem-content {
+  text-align: left;
+  margin: 2rem 0;
+}
+
+/* Individual poem line styling */
+.poem-line {
+  margin: 0.7em 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Poem author attribution styling */
+.poem-author {
+  font-style: italic;
+  text-align: right;
+  color: var(--accent-color);
+  margin-top: 1rem;
+}
+
+/* Navigation controls styling */
+.poem-navigation {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* Navigation button styling */
+.nav-button {
+  background-color: transparent;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: var(--accent-color);
+  color: var(--paper-color);
+}
+
+/* Current poem counter styling */
+.poem-counter {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--accent-color);
+}
+
+/* Status message containers (loading, error, no-poems) */
+.loading, .error, .no-poems {
+  background-color: var(--paper-color);
+  border-radius: 5px;
+  box-shadow: 0 3px 15px var(--shadow-color);
+  padding: 3rem 4rem;
+  max-width: 500px;
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+/* Error message styling */
+.error {
+  color: var(--error-color);
+}
+
+.error p {
+  margin: 0.5rem 0;
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.loading {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  .poem-card {
+    padding: 2rem;
+  }
+  
+  .poem-title {
+    font-size: 1.7rem;
+  }
+  
+  .poem-line {
+    font-size: 1rem;
+  }
 }

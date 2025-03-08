@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "Full stack application with Quarkus backend and SolidJS frontend",
   "scripts": {
-    "frontend": "cd frontend && npm run dev",
-    "backend": "cd backend && ./mvnw quarkus:dev",
-    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
-    "install-deps": "npm i && cd frontend && npm i"
+    "kill-backend": "lsof -ti:8081 | xargs kill -9 || true",
+    "kill-frontend": "lsof -ti:5173,5174 | xargs kill -9 || true",
+    "kill-all": "npm run kill-backend && npm run kill-frontend",
+    "frontend": "npm run kill-frontend && cd frontend && npm run dev",
+    "backend": "npm run kill-backend && cd backend && ./mvnw quarkus:dev",
+    "dev": "npm run kill-all && concurrently \"npm run backend\" \"npm run frontend\"",
+    "install-deps": "npm i && cd frontend && npm i",
+    "mongo-status": "mongosh --eval 'db.adminCommand({ ping: 1 })'"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
