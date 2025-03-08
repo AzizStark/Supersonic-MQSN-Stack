@@ -1,84 +1,141 @@
-import { createSignal, onMount } from 'solid-js'
-import './App.css'
+import { createSignal, lazy, Suspense, Show, onMount } from 'solid-js';
+import './App.css';
+import authStore from './store/authStore';
+
+// Import components
+import PoemBrowser from './pages/PoemBrowser';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Unauthorized from './components/Unauthorized';
+import AdminDashboard from './pages/AdminDashboard';
+import UserProfile from './pages/UserProfile';
 
 /**
- * Main application component for displaying poems
- * Fetches poems from backend API and provides navigation between them
+ * Simple application with conditional rendering based on auth state
  */
-function App() {
-  const [poems, setPoems] = createSignal([]);
-  const [currentPoemIndex, setCurrentPoemIndex] = createSignal(0);
-  const [loading, setLoading] = createSignal(true);
-  const [error, setError] = createSignal(null);
+export default function App() {
+  // Map path to page name
+  const getPageFromPath = (path) => {
+    const pathSegments = path.split('/').filter(Boolean);
+    const mainPath = pathSegments[0] || 'home';
+    
+    const validPages = ['home', 'login', 'signup', 'admin', 'profile'];
+    return validPages.includes(mainPath) ? mainPath : 'home';
+  };
   
-  // Fetch poems on component mount
-  onMount(async () => {
-    try {
-      setLoading(true);
-      const response = await fetch('http://localhost:8081/api/poems');
-      if (!response.ok) {
-        throw new Error(`Failed to fetch poems: ${response.status}`);
-      }
-      const data = await response.json();
-      setPoems(data);
-    } catch (err) {
-      console.error('Error fetching poems:', err);
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+  // Initialize page based on URL path
+  const initialPage = getPageFromPath(window.location.pathname);
+  const [currentPage, setCurrentPage] = createSignal(initialPage);
+  
+  // Navigation helper
+  const navigate = (page) => {
+    setCurrentPage(page);
+    // Update the URL to match the page (without page reload)
+    const newPath = page === 'home' ? '/' : `/${page}`;
+    window.history.pushState({}, '', newPath);
+  };
+  
+  // Handle browser back/forward button
+  onMount(() => {
+    window.addEventListener('popstate', () => {
+      const newPage = getPageFromPath(window.location.pathname);
+      setCurrentPage(newPage);
+    });
   });
   
-  // Navigation handlers
-  const nextPoem = () => {
-    if (poems().length > 0) {
-      setCurrentPoemIndex(prev => (prev + 1) % poems().length);
-    }
+  // Logout handler
+  const handleLogout = () => {
+    authStore.logout();
+    navigate('home');
   };
   
-  const prevPoem = () => {
-    if (poems().length > 0) {
-      setCurrentPoemIndex(prev => (prev - 1 + poems().length) % poems().length);
+  // Page renderer based on current page and auth state
+  const renderPage = () => {
+    switch (currentPage()) {
+      case 'home':
+        return <PoemBrowser />;
+      case 'login':
+        return <Login 
+          onSuccess={() => navigate('home')} 
+          onSignup={() => navigate('signup')} 
+        />;
+      case 'signup':
+        return <Signup 
+          onSuccess={() => navigate('home')} 
+          onLogin={() => navigate('login')} 
+        />;
+      case 'admin':
+        return authStore.isAuthenticated && authStore.isAdmin 
+          ? <AdminDashboard /> 
+          : <Unauthorized />;
+      case 'profile':
+        return authStore.isAuthenticated 
+          ? <UserProfile /> 
+          : <Unauthorized />;
+      default:
+        return <div>Page not found</div>;
     }
-  };
-  
-  // Helper function to render poem content with line breaks
-  const renderPoemContent = (content) => {
-    return content.split('\n').map((line, i) => (
-      <p class="poem-line" key={i}>{line}</p>
-    ));
   };
   
   return (
-    <div class="poem-container">
-      {loading() ? (
-        <div class="loading">Loading poems...</div>
-      ) : error() ? (
-        <div class="error">
-          <p>Error: {error()}</p>
-          <p>Could not load poems from server.</p>
+    <div class="app-container">
+      {/* Navigation bar */}
+      <nav class="navbar">
+        <div class="navbar-logo">
+          <a href="#" onClick={(e) => { e.preventDefault(); navigate('home'); }}>
+            Poetry App
+          </a>
         </div>
-      ) : poems().length === 0 ? (
-        <div class="no-poems">No poems available.</div>
-      ) : (
-        <>
-          <div class="poem-card">
-            <h1 class="poem-title">{poems()[currentPoemIndex()].title}</h1>
-            <div class="poem-content">
-              {renderPoemContent(poems()[currentPoemIndex()].content)}
-            </div>
-            <p class="poem-author">— {poems()[currentPoemIndex()].author}</p>
-          </div>
+        
+        <div class="navbar-menu">
+          <a class="navbar-item" href="#" onClick={(e) => { e.preventDefault(); navigate('home'); }}>
+            Home
+          </a>
           
-          <div class="poem-navigation">
-            <button onClick={prevPoem} class="nav-button">Previous</button>
-            <span class="poem-counter">{currentPoemIndex() + 1} / {poems().length}</span>
-            <button onClick={nextPoem} class="nav-button">Next</button>
-          </div>
-        </>
-      )}
+          <Show when={authStore.isAuthenticated}>
+            <a class="navbar-item" href="#" onClick={(e) => { e.preventDefault(); navigate('profile'); }}>
+              My Profile
+            </a>
+            
+            <Show when={authStore.isAdmin}>
+              <a class="navbar-item" href="#" onClick={(e) => { e.preventDefault(); navigate('admin'); }}>
+                Admin Dashboard
+              </a>
+            </Show>
+          </Show>
+        </div>
+        
+        <div class="navbar-auth">
+          <Show
+            when={authStore.isAuthenticated}
+            fallback={
+              <>
+                <a class="btn-link" href="#" onClick={(e) => { e.preventDefault(); navigate('login'); }}>
+                  Login
+                </a>
+                <a class="btn-primary" href="#" onClick={(e) => { e.preventDefault(); navigate('signup'); }}>
+                  Sign Up
+                </a>
+              </>
+            }
+          >
+            <span class="user-welcome">Welcome, {authStore.username}</span>
+            <button class="btn-logout" onClick={handleLogout}>Logout</button>
+          </Show>
+        </div>
+      </nav>
+      
+      {/* Main content */}
+      <main class="content-container">
+        <Suspense fallback={<div class="loading">Loading...</div>}>
+          {renderPage()}
+        </Suspense>
+      </main>
+      
+      {/* Footer */}
+      <footer class="app-footer">
+        <p>&copy; {new Date().getFullYear()} Poetry App</p>
+      </footer>
     </div>
-  )
+  );
 }
-
-export default App

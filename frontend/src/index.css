@@ -13,13 +13,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  min-width: 100vw;
+  max-width: 100vw;
+}
+
 /* Body layout */
 body {
   margin: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
 
@@ -28,35 +31,40 @@ body {
   :root {
     color-scheme: dark;
   }
-  
+
   body {
     background-color: #2a2725 !important;
   }
-  
+
   .poem-card {
     background-color: #3a3632 !important;
     color: #e6e1d7 !important;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3) !important;
   }
-  
-  .poem-title, .poem-author, .nav-button, .poem-counter {
+
+  .poem-title,
+  .poem-author,
+  .nav-button,
+  .poem-counter {
     color: #c4aa88 !important;
   }
-  
+
   .nav-button {
     border-color: #c4aa88 !important;
   }
-  
+
   .nav-button:hover {
     background-color: #c4aa88 !important;
     color: #3a3632 !important;
   }
-  
-  .loading, .error, .no-poems {
+
+  .loading,
+  .error,
+  .no-poems {
     background-color: #3a3632 !important;
     color: #e6e1d7 !important;
   }
-  
+
   .error {
     color: #e9a8a6 !important;
   }
