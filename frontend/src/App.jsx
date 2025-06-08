@@ -4,6 +4,8 @@ import authStore from './store/authStore';
 
 // Import components
 import PoemBrowser from './pages/PoemBrowser';
+import BookStore from './pages/BookStore';
+import ShoppingCart from './pages/ShoppingCart';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Unauthorized from './components/Unauthorized';
@@ -19,7 +21,7 @@ export default function App() {
     const pathSegments = path.split('/').filter(Boolean);
     const mainPath = pathSegments[0] || 'home';
     
-    const validPages = ['home', 'login', 'signup', 'admin', 'profile'];
+    const validPages = ['home', 'books', 'cart', 'login', 'signup', 'admin', 'profile'];
     return validPages.includes(mainPath) ? mainPath : 'home';
   };
   
@@ -54,14 +56,18 @@ export default function App() {
     switch (currentPage()) {
       case 'home':
         return <PoemBrowser />;
+      case 'books':
+        return <BookStore />;
+      case 'cart':
+        return <ShoppingCart />;
       case 'login':
         return <Login 
-          onSuccess={() => navigate('home')} 
+          onSuccess={() => navigate('books')} 
           onSignup={() => navigate('signup')} 
         />;
       case 'signup':
         return <Signup 
-          onSuccess={() => navigate('home')} 
+          onSuccess={() => navigate('books')} 
           onLogin={() => navigate('login')} 
         />;
       case 'admin':
@@ -83,13 +89,16 @@ export default function App() {
       <nav class="navbar">
         <div class="navbar-logo">
           <a href="#" onClick={(e) => { e.preventDefault(); navigate('home'); }}>
-            Poetry App
+            Quintessa Book Shop
           </a>
         </div>
         
         <div class="navbar-menu">
           <a class="navbar-item" href="#" onClick={(e) => { e.preventDefault(); navigate('home'); }}>
-            Home
+            Poetry
+          </a>
+          <a class="navbar-item" href="#" onClick={(e) => { e.preventDefault(); navigate('books'); }}>
+            Book Store
           </a>
           
           <Show when={authStore.isAuthenticated}>
@@ -106,6 +115,11 @@ export default function App() {
         </div>
         
         <div class="navbar-auth">
+          {/* Shopping cart icon */}
+          <a class="cart-icon" href="#" onClick={(e) => { e.preventDefault(); navigate('cart'); }}>
+            🛒
+          </a>
+          
           <Show
             when={authStore.isAuthenticated}
             fallback={
@@ -134,7 +148,7 @@ export default function App() {
       
       {/* Footer */}
       <footer class="app-footer">
-        <p>&copy; {new Date().getFullYear()} Poetry App</p>
+        <p>&copy; {new Date().getFullYear()} Aziz Stark </p>
       </footer>
     </div>
   );

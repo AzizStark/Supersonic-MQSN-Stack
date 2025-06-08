@@ -37,7 +37,7 @@ export default function Login(props) {
       <div class="auth-form">
         <div class="auth-header">
           <h2>Welcome Back</h2>
-          <p class="auth-subtitle">Enter your credentials to continue your poetic journey</p>
+          <p class="auth-subtitle">Enter your credentials to continue your literary journey</p>
         </div>
         
         <Show when={errorMessage()}>

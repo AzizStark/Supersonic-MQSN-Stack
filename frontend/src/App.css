@@ -4,21 +4,21 @@
   --primary-dark: #4c59b0;
   --primary-light: #7d87d4;
   --secondary-color: #e9e9e9;
-  --accent-color: #f6b352;
+  --accent-color: #c4a775;
   --text-color: #333;
-  --text-light: #666;
-  --background-color: #f8f9fa;
+  --text-light: #ab9b7a;
+  --background-color: #313131;
   --error-color: #dc3545;
   --success-color: #28a745;
   --danger-color: #dc3545;
-  --border-color: #dee2e6;
+  --border-color: rgba(196, 167, 117, 0.3);
   --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   --header-height: 60px;
   --footer-height: 60px;
   --auth-bg-color: #3a3a3a;
   --auth-text-color: #e8e8e8;
   --auth-accent: #c4a775;
-  --auth-accent-light: #ddc9a9;
+  --auth-accent-light: #ffb0b0;
   --auth-input-bg: rgba(255, 255, 255, 0.07);
   --auth-input-border: 1px solid rgba(255, 255, 255, 0.15);
 }
@@ -30,12 +30,12 @@
   box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
   height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
   color: var(--text-color);
-  background-color: var(--background-color);
 }
 
 button {
@@ -52,7 +52,6 @@ button {
 
 .content-container {
   flex: 1;
-  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
 }
@@ -72,7 +71,7 @@ button {
 .navbar-logo a {
   font-size: 1.8rem;
   font-weight: normal;
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
   color: var(--auth-accent-light);
   text-decoration: none;
   letter-spacing: 1px;
@@ -107,7 +106,7 @@ button {
 }
 
 .navbar-item:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 1px;
@@ -131,7 +130,7 @@ button {
   color: var(--auth-accent-light);
   font-weight: normal;
   font-style: italic;
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
@@ -144,13 +143,13 @@ button {
   justify-content: center;
   border-top: 1px solid rgba(169, 142, 100, 0.3);
   color: var(--auth-text-color);
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
   font-style: italic;
   position: relative;
 }
 
 .app-footer::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 50%;
@@ -167,7 +166,7 @@ button {
 
 .app-footer p::before,
 .app-footer p::after {
-  content: '•';
+  content: "•";
   color: var(--auth-accent-light);
   margin: 0 0.8rem;
   opacity: 0.7;
@@ -241,7 +240,7 @@ button {
   border-radius: 4px;
   font-size: 0.9rem;
   transition: all 0.3s;
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
   opacity: 0.9;
 }
 
@@ -262,6 +261,22 @@ button {
   max-width: 600px;
   margin: 1.5rem auto;
   padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height) - 3rem);
+  position: relative;
+}
+
+.poem-container::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat;
+  z-index: -1;
 }
 
 .poem-card {
@@ -281,7 +296,7 @@ button {
   top: -10px;
   left: 15px;
   font-size: 6rem;
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
   color: var(--auth-accent);
   opacity: 0.1;
   line-height: 1;
@@ -293,7 +308,7 @@ button {
   color: var(--auth-accent-light);
   font-weight: normal;
   font-size: 1.7rem;
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
   letter-spacing: 0.8px;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -316,7 +331,7 @@ button {
   text-align: right;
   font-style: italic;
   color: var(--auth-accent-light);
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
   margin-top: 1.2rem;
   opacity: 0.9;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
@@ -332,7 +347,7 @@ button {
 .poem-counter {
   color: var(--auth-text-color);
   opacity: 0.7;
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
   font-style: italic;
   font-size: 0.9rem;
 }
@@ -353,7 +368,9 @@ button {
   color: var(--auth-accent-light);
 }
 
-.loading, .error, .no-poems {
+.loading,
+.error,
+.no-poems {
   background-color: var(--auth-bg-color);
   border-radius: 6px;
   padding: 2rem 1.8rem;
@@ -394,7 +411,7 @@ button {
 .auth-form h2 {
   text-align: center;
   margin-bottom: 0.5rem;
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
   font-size: 1.8rem;
   color: var(--auth-accent-light);
   font-weight: normal;
@@ -429,7 +446,7 @@ button {
   font-style: italic;
   font-size: 0.85rem;
   opacity: 0.8;
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
 
@@ -577,6 +594,266 @@ button {
   margin-right: 0.5rem;
 }
 
+/* Book Store Styling - Classic Literary Theme */
+.book-store {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.book-store h1 {
+  font-family: 'Garamond', 'Times New Roman', serif;
+  color: var(--auth-accent-light);
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.book-store p {
+  text-align: center;
+  color: #153b0c;
+  font-style: italic;
+  font-family: 'Garamond', 'Times New Roman', serif;
+  opacity: 0.8;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 1px solid rgba(169, 142, 100, 0.3);
+  border-radius: 5px;
+  background-color: rgba(58, 58, 58, 0.7);
+}
+
+.search-box input {
+  padding: 0.6rem 1rem;
+  width: 300px;
+  border: var(--auth-input-border);
+  border-radius: 3px;
+  background-color: var(--auth-input-bg);
+  color: var(--auth-text-color);
+  font-family: 'Garamond', 'Times New Roman', serif;
+}
+
+.category-filter select {
+  padding: 0.6rem 1rem;
+  border: var(--auth-input-border);
+  border-radius: 3px;
+  background-color: var(--auth-input-bg);
+  color: var(--auth-text-color);
+  font-family: 'Garamond', 'Times New Roman', serif;
+  min-width: 180px;
+}
+
+.books-container {
+  position: relative;
+}
+
+.loading-message, .no-results, .error-message {
+  text-align: center;
+  margin: 2rem 0;
+  color: var(--auth-text-color);
+  font-family: 'Garamond', 'Times New Roman', serif;
+  font-style: italic;
+}
+
+.error-message {
+  color: #ff6b6b;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.book-card {
+  position: relative;
+  border: 1px solid #786141;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f1e8;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4c8b0' fill-opacity='0.2' fill-rule='evenodd'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.book-card:hover {
+  transform: translateY(-5px) rotate(1deg);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.18);
+}
+
+.book-card:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(169, 142, 100, 0.1));
+  pointer-events: none;
+}
+
+.book-cover {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to bottom, #e8e1d1, #f5f1e8);
+  border-bottom: 1px solid #d4c8b0;
+}
+
+.book-cover img {
+  max-height: 220px;
+  width: auto;
+  max-width: 100%;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #c9bc9c;
+  transition: transform 0.3s ease;
+}
+
+.book-card:hover .book-cover img {
+  transform: scale(1.03);
+}
+
+.placeholder-cover {
+  width: 140px;
+  height: 200px;
+  background-color: #786141;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f5f1e8;
+  font-family: 'Garamond', 'Times New Roman', serif;
+  font-size: 2.5rem;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.book-card:hover .placeholder-cover {
+  transform: scale(1.03);
+}
+
+.book-details {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background: linear-gradient(to bottom, #f5f1e8, #ebe5d4);
+  filter: brightness(0.9);
+}
+
+.book-title {
+  font-family: 'Garamond', 'Times New Roman', serif;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #3a3020;
+  text-align: center;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+}
+
+.book-author {
+  font-style: italic;
+  color: #665c49;
+  margin-bottom: 0.8rem;
+  text-align: center;
+  font-family: 'Garamond', 'Times New Roman', serif;
+  font-size: 0.95rem;
+  position: relative;
+}
+
+.book-author:after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background-color: #625944;
+  margin: 0.8rem auto;
+  margin-bottom: 0px;
+}
+
+.book-price {
+  font-family: 'Garamond', 'Times New Roman', serif;
+  font-size: 1.2rem;
+  color: #5a4a30;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.book-actions {
+  text-align: center;
+  margin-top: auto;
+}
+
+.book-actions button {
+  background: none;
+  border: none;
+  color: #5a4a30;
+  font-family: 'Garamond', 'Times New Roman', serif;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  background-color: #ebe5d4;
+  border: 1px solid #c9bc9c;
+}
+
+.book-actions button:before {
+  content: '🔖';
+  margin-right: 8px;
+}
+
+.book-actions button:hover {
+  background-color: #d4c8b0;
+  color: #3a3020;
+}
+
+.book-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.book-actions button:disabled:hover {
+  background-color: #ebe5d4;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .search-box input {
+    width: 100%;
+  }
+  
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Admin Dashboard Styling */
 .admin-dashboard {
   padding: 1rem 0;
@@ -587,7 +864,6 @@ button {
 }
 
 .admin-panel {
-  background-color: white;
   border-radius: 8px;
   padding: 1.5rem;
   box-shadow: var(--card-shadow);
@@ -609,12 +885,10 @@ button {
 .users-table td {
   padding: 0.75rem;
   text-align: left;
-  border-bottom: 1px solid var(--border-color);
 }
 
 .users-table th {
   font-weight: 600;
-  background-color: #f8f9fa;
 }
 
 .stat-cards {
@@ -624,7 +898,7 @@ button {
 }
 
 .stat-card {
-  background-color: #f8f9fa;
+  background-color: var(--auth-bg-color);
   padding: 1.5rem;
   border-radius: 8px;
   flex: 1;
@@ -642,18 +916,22 @@ button {
 .stat-number {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--primary-color);
+  color: #ddd;
 }
 
 /* User Profile Styles - Artisan Theme */
 .profile-container {
   max-width: 520px;
-  margin: 1.5rem auto;
+  margin: 0 auto;
   padding: 0.5rem;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .profile-container h1 {
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
   font-weight: normal;
   color: var(--auth-accent);
   margin-bottom: 1.2rem;
@@ -679,7 +957,7 @@ button {
 }
 
 .profile-header::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -1rem;
   left: 50%;
@@ -703,14 +981,14 @@ button {
   font-weight: bold;
   margin-bottom: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
 }
 
 .profile-header h2 {
   margin-top: 0.5rem;
   color: var(--auth-accent-light);
   font-weight: normal;
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
   font-size: 1.6rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
@@ -834,7 +1112,7 @@ button {
 }
 
 .unauthorized-content::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -1px;
   left: 50%;
@@ -847,7 +1125,7 @@ button {
 .unauthorized-content h1 {
   color: var(--auth-accent-light);
   margin-bottom: 1rem;
-  font-family: 'Garamond', serif;
+  font-family: "Garamond", serif;
   font-weight: normal;
   letter-spacing: 0.8px;
   font-size: 1.8rem;
@@ -901,7 +1179,7 @@ button {
     flex-wrap: wrap;
     padding: 1rem;
   }
-  
+
   .navbar-menu {
     order: 3;
     width: 100%;
@@ -909,24 +1187,21 @@ button {
     justify-content: center;
     gap: 1rem;
   }
-  
-  .content-container {
-    padding: 1rem;
-  }
-  
-  .poem-card, .auth-form {
+
+  .poem-card,
+  .auth-form {
     padding: 1.8rem;
   }
-  
+
   .auth-form h2 {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
   }
-  
+
   .admin-panel {
     overflow-x: auto;
   }
-  
+
   .stat-cards {
     flex-direction: column;
   }
@@ -949,28 +1224,28 @@ button {
     padding: 1rem;
     gap: 1rem;
   }
-  
+
   .profile-row {
     flex-direction: column;
   }
-  
+
   .profile-label {
     margin-bottom: 0.5rem;
   }
-  
+
   .poem-navigation {
     flex-direction: column;
     gap: 1rem;
   }
-  
+
   .auth-form {
     padding: 1.5rem;
   }
-  
+
   .auth-form h2 {
     font-size: 1.6rem;
   }
-  
+
   .auth-form .btn-primary {
     padding: 0.7rem 1rem;
   }

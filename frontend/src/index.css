@@ -1,71 +1,932 @@
-/* Base reset styles */
+/* Global styles - Wooden Library Theme */
+:root {
+  --primary-color: #5d4037;      /* Dark mahogany */
+  --secondary-color: #a1887f;    /* Medium wood */
+  --accent-color: #8d6e63;       /* Walnut */
+  --text-color: #3e2723;         /* Very dark wood color */
+  --light-text: #efebe9;         /* Light wood cream */
+  --background-color: #d7ccc8;   /* Very light brown/taupe */
+  --card-bg-color: #bcaaa4;      /* Light wood color */
+  --border-color: #a1887f;       /* Medium wood border */
+  --error-color: #7f3631;        /* Dark red wood */
+  --success-color: #33691e;      /* Forest green */
+  
+  /* Additional wooden theme colors */
+  --dark-wood: #4e342e;          /* Dark wood color */
+  --medium-wood: #8d6e63;        /* Medium brown wood */
+  --light-wood: #bcaaa4;         /* Light wood color */
+  --very-light-wood: #d7ccc8;    /* Very light wood */
+  --wood-grain: #a1887f;         /* Wood grain color */
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Core typography settings */
-:root {
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#root {
-  min-width: 100vw;
-  max-width: 100vw;
-}
-
-/* Body layout */
 body {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', Times, serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
 }
 
-/* Dark mode styles */
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
+/* App container */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23fff' fill-opacity='0.03'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Navigation */
+.navbar {
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar-logo a {
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-item {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.navbar-item:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.navbar-auth {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-link, .btn-primary, .btn-secondary, .btn-logout {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-link {
+  color: white;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #e67e22;
+}
+
+.btn-secondary {
+  background-color: #95a5a6;
+  color: white;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #7f8c8d;
+}
+
+.btn-logout {
+  background-color: rgba(255,255,255,0.1);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.btn-logout:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+
+.btn-small {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  margin-right: 0.5rem;
+}
+
+.btn-danger {
+  background-color: var(--error-color);
+  color: white;
+}
+
+.user-welcome {
+  color: white;
+  margin-right: 0.5rem;
+}
+
+/* Main content */
+.content-container {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Footer */
+.app-footer {
+  background-color: var(--primary-color);
+  color: rgba(255,255,255,0.8);
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Cart icon styles */
+.cart-icon {
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+  position: relative;
+  margin-right: 1rem;
+}
+
+/* BookStore styles - Matching Poetry Theme */
+.book-store {
+  max-width: 1000px;
+  margin: 1.5rem auto;
+  padding: 0.5rem;
+}
+
+.book-store h1 {
+  font-family: 'Garamond', serif;
+  font-weight: normal;
+  color: var(--auth-accent);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.book-store p {
+  color: var(--auth-text-color);
+  text-align: center;
+
+  opacity: 0.9;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+  gap: 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-box {
+  flex: 1;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.07);
+  color: var(--auth-text-color);
+  font-size: 0.9rem;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--auth-accent);
+  box-shadow: 0 0 0 1px rgba(169, 142, 100, 0.15);
+}
+
+.category-filter select {
+  padding: 0.65rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.07);
+  color: var(--auth-text-color);
+  min-width: 200px;
+  font-size: 0.9rem;
+}
+
+.category-filter select:focus {
+  outline: none;
+  border-color: var(--auth-accent);
+  box-shadow: 0 0 0 1px rgba(169, 142, 100, 0.15);
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.book-card {
+  background-color: var(--auth-bg-color);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.book-cover {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.book-cover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
+  z-index: 1;
+}
+
+.book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.book-cover img:hover {
+  transform: scale(1.05);
+}
+
+.placeholder-cover {
+  background: linear-gradient(135deg, var(--auth-accent), var(--auth-accent-light));
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--auth-bg-color);
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Garamond', serif;
+}
+
+.book-details {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  color: var(--auth-text-color);
+}
+
+.book-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Garamond', serif;
+  color: var(--auth-accent-light);
+  font-weight: normal;
+}
+
+.book-author {
+  color: var(--auth-text-color);
+  opacity: 0.8;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.book-price {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--auth-accent);
+  margin-top: auto;
+  margin-bottom: 1rem;
+}
+
+.book-actions {
+  margin-top: auto;
+}
+
+.book-actions button {
+  width: 100%;
+  background-color: var(--auth-accent);
+  color: var(--auth-bg-color);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 3px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.book-actions button:hover {
+  background-color: #b89b70;
+}
+
+.book-actions button:disabled {
+  background-color: rgba(196, 167, 117, 0.4);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.error-message, .loading-message, .no-results {
+  background-color: var(--auth-bg-color);
+  border-radius: 6px;
+  padding: 2rem 1.8rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  color: var(--auth-text-color);
+  max-width: 600px;
+  margin: 1.5rem auto;
+}
+
+.error-message {
+  border-left: 3px solid #ff6b6b;
+}
+
+/* Shopping Cart styles */
+.shopping-cart h1 {
+  margin-bottom: 2rem;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 3rem;
+  background-color: var(--card-bg-color);
+  border-radius: 8px;
+}
+
+.empty-cart p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--card-bg-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cart-table th, .cart-table td {
+  padding: 1.2rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cart-table thead tr {
+  background-color: var(--medium-wood);
+  color: var(--light-text);
+}
+
+.cart-item-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.item-image {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.quantity-controls {
+  display: inline-flex; /* Changed to inline-flex for better centering */
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Consistent spacing between elements */
+}
+
+.quantity-controls span {
+  display: inline-block;
+  min-width: 24px; /* Fixed width for the counter */
+  text-align: center;
+  font-weight: 500;
+  padding: 0 2px;
+}
+
+.btn-quantity {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn-quantity:hover {
+  background-color: #f5f5f5;
+}
+
+.btn-remove {
+  background-color: transparent;
+  color: var(--error-color);
+  border: 1px solid var(--error-color);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-remove:hover {
+  background-color: var(--error-color);
+  color: white;
+}
+
+.cart-table tfoot tr {
+  font-weight: bold;
+}
+
+.total-label {
+  text-align: right;
+}
+
+.cart-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+/* Stat cards styling - Poetry Theme */
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.stat-card {
+  background-color: var(--auth-bg-color);
+  padding: 1.8rem 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), 0 0 5px rgba(196, 167, 117, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--auth-accent);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2), 0 0 8px rgba(196, 167, 117, 0.2);
+}
+
+.stat-title {
+  font-family: 'Garamond', Georgia, serif;
+  color: var(--auth-accent-light);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+}
+
+.stat-number {
+  font-family: 'Garamond', Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: normal;
+  color: var(--auth-accent);
+  margin: 0.8rem 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.stat-description {
+  font-style: italic;
+  color: var(--auth-text-color);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 0.5rem;
   }
 
-  body {
-    background-color: #2a2725 !important;
+  .navbar-menu {
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
   }
 
-  .poem-card {
-    background-color: #3a3632 !important;
-    color: #e6e1d7 !important;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3) !important;
+  .navbar-auth {
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
-  .poem-title,
-  .poem-author,
-  .nav-button,
-  .poem-counter {
-    color: #c4aa88 !important;
+  .filters {
+    flex-direction: column;
   }
 
-  .nav-button {
-    border-color: #c4aa88 !important;
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 
-  .nav-button:hover {
-    background-color: #c4aa88 !important;
-    color: #3a3632 !important;
+  .cart-table, .cart-table thead, .cart-table tbody, .cart-table th, .cart-table td, .cart-table tr {
+    display: block;
   }
 
-  .loading,
-  .error,
-  .no-poems {
-    background-color: #3a3632 !important;
-    color: #e6e1d7 !important;
+  .cart-table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
   }
 
-  .error {
-    color: #e9a8a6 !important;
+  .cart-table tr {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
   }
+
+  .cart-table td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  .cart-table td:before {
+    position: absolute;
+    top: 1.2rem;
+    left: 1rem;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+
+  .cart-table td:nth-of-type(1):before { content: "Book"; }
+  .cart-table td:nth-of-type(2):before { content: "Price"; }
+  .cart-table td:nth-of-type(3):before { content: "Quantity"; }
+  .cart-table td:nth-of-type(4):before { content: "Subtotal"; }
+  .cart-table td:nth-of-type(5):before { content: "Actions"; }
+}
+
+/* Artisan styling for admin panels - Poetry Theme */
+.artisan-title {
+  font-family: 'Garamond', Georgia, serif;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--auth-accent);
+  border-bottom: 1px solid rgba(196, 167, 117, 0.3);
+  padding-bottom: 0.5rem;
+  font-weight: normal;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.artisan-subtitle {
+  font-family: 'Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--auth-text-color);
+  font-style: italic;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.admin-dashboard {
+  max-width: 1000px;
+  margin: 1.5rem auto;
+  padding: 0.5rem;
+}
+
+.artisan-panel {
+  background-color: var(--auth-bg-color);
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  color: var(--auth-text-color);
+  border: none;
+}
+
+.artisan-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--auth-accent);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  opacity: 0.7;
+}
+
+.artisan-panel::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 1px;
+  background-color: var(--auth-accent-light);
+  opacity: 0.5;
+}
+
+.panel-title {
+  font-family: 'Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--auth-accent-light);
+  font-weight: normal;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.panel-description {
+  color: var(--auth-text-color);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* Table styling */
+.artisan-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-family: 'Garamond', Georgia, serif;
+  color: var(--auth-text-color);
+}
+
+.artisan-table thead {
+  border-bottom: 1px solid rgba(196, 167, 117, 0.3);
+}
+
+.artisan-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: normal;
+  color: var(--auth-accent-light);
+  font-size: 1.1rem;
+}
+
+.artisan-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.artisan-table tr:hover {
+  background-color: rgba(196, 167, 117, 0.05);
+}
+
+.artisan-table .btn-small {
+  background-color: transparent;
+  color: var(--auth-accent-light);
+  border: 1px solid rgba(196, 167, 117, 0.3);
+  padding: 0.4rem 0.8rem;
+  border-radius: 3px;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
+
+.artisan-table .btn-small:hover {
+  background-color: rgba(196, 167, 117, 0.1);
+  border-color: var(--auth-accent);
+  color: var(--auth-accent-light);
+}
+
+.artisan-table .btn-danger {
+  background-color: transparent;
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.artisan-table .btn-danger:hover {
+  background-color: rgba(255, 107, 107, 0.1);
+  border-color: #ff6b6b;
+}
+
+/* Form styling for artisan panels - Poetry Theme */
+.book-form {
+  color: var(--auth-text-color);
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.book-form .form-group {
+  margin-bottom: 1.2rem;
+}
+
+.book-form .form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--auth-text-color);
+  font-weight: normal;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+}
+
+.book-form .form-group input,
+.book-form .form-group textarea,
+.book-form .form-group select {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.07);
+  color: var(--auth-text-color);
+  font-family: 'Garamond', Georgia, serif;
+  font-size: 0.9rem;
+}
+
+.book-form .form-group input:focus,
+.book-form .form-group textarea:focus,
+.book-form .form-group select:focus {
+  outline: none;
+  border-color: var(--auth-accent);
+  box-shadow: 0 0 0 1px rgba(169, 142, 100, 0.15);
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.form-buttons .btn-primary {
+  background-color: var(--auth-accent);
+  color: var(--auth-bg-color);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 3px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.form-buttons .btn-primary:hover {
+  background-color: #b89b70;
+}
+
+.form-buttons .btn-secondary {
+  background-color: transparent;
+  color: var(--auth-text-color);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.6rem 1.2rem;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.form-buttons .btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--auth-accent-light);
+}
+
+/* Book management specific styles */
+.book-management {
+  margin-top: 3rem;
+}
+
+.books-list-panel {
+  margin-top: 2.5rem;
+}
+
+.empty-inventory {
+  text-align: center;
+  padding: 2rem;
+  font-style: italic;
+  color: var(--auth-text-color);
+  opacity: 0.7;
+  border: 1px dashed rgba(196, 167, 117, 0.3);
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.02);
+  font-family: 'Garamond', Georgia, serif;
+}
+
+/* Error and success messages - Poetry Theme */
+.error-message, .success-message, .loading-message, .no-results, .empty-inventory {
+  padding: 1.2rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+  font-family: 'Garamond', Georgia, serif;
+}
+
+.error-message {
+  background-color: rgba(255, 107, 107, 0.1);
+  border-left: 3px solid #ff6b6b;
+  color: #ff6b6b;
+  display: flex;
+  align-items: center;
+}
+
+.success-message {
+  background-color: rgba(46, 204, 113, 0.1);
+  border-left: 3px solid #2ecc71;
+  color: #2ecc71;
+  display: flex;
+  align-items: center;
+}
+
+.success-icon, .error-icon, .loading-icon {
+  font-size: 1.2rem;
+  margin-right: 0.75rem;
+}
+
+.loading-message, .no-results {
+  text-align: center;
+  color: var(--auth-text-color);
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* Fix for autofill white background and borders */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--auth-bg-color) inset !important;
+  -webkit-text-fill-color: var(--auth-text-color) !important;
+  transition: all 5000s ease-in-out 0s;
+  background-color: var(--auth-bg-color) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  caret-color: var(--auth-text-color) !important;
+}
+
+/* Additional styling for the actual input fields in auth forms */
+.auth-form input[type="text"],
+.auth-form input[type="password"],
+.auth-form input[type="email"] {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.auth-form input[type="text"]:-webkit-autofill,
+.auth-form input[type="password"]:-webkit-autofill,
+.auth-form input[type="email"]:-webkit-autofill {
+  border: 1px solid rgb(51 45 45 / 72%) !important;
+  box-shadow: 0 0 0 30px var(--auth-bg-color) inset !important;
+}
+
+/* Global focus styles to match the wooden theme */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none !important;
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 0 0 1px var(--accent-color) !important;
+}
+
+/* Remove default focus ring for keyboard navigation */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Maintain focus visibility for accessibility (keyboard navigation) */
+*:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 1px;
 }
