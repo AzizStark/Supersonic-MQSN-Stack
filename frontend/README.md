@@ -2,6 +2,8 @@
 
 This directory contains the frontend application for the MQSN stack demo, built with SolidJS and Vite.
 
+![Book Gallery](../screenshots/homepage_book-gallery.jpeg)
+
 ## Technology Stack
 
 ### Core Framework
@@ -85,6 +87,8 @@ SolidJS components use a React-like JSX syntax but with fundamental differences:
 - Props are reactive without prop drilling issues
 - Efficient updates that only affect what changed
 
+![Poetry Interface](../screenshots/poetry.jpeg)
+
 ### Authentication Flow
 The application implements a JWT-based authentication flow:
 
@@ -92,6 +96,13 @@ The application implements a JWT-based authentication flow:
 2. JWT token received and stored
 3. Token included in Authorization header for API calls
 4. Protected routes check for valid token
+
+<table>
+  <tr>
+    <td><img src="../screenshots/login-page.jpeg" alt="Login Page" width="100%"/></td>
+    <td><img src="../screenshots/signup.jpeg" alt="Signup Page" width="100%"/></td>
+  </tr>
+</table>
 
 ### Routing Implementation
 
@@ -131,6 +142,10 @@ Performance benchmarks consistently show SolidJS outperforming other frameworks:
 - Minimal memory churn
 - Low GC pressure
 - Optimal CPU utilization
+
+![Inventory Management](../screenshots/inventory-page_booklist.jpeg)
+
+**Real-world Example:** The inventory management interface shown above renders book items with fine-grained reactivity, updating only the specific DOM nodes that change when items are modified.
 
 ## Development Workflow
 

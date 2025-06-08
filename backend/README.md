@@ -2,6 +2,9 @@
 
 This directory contains the backend application for the MQSN stack demo, built with Quarkus and MongoDB.
 
+![Admin Dashboard](../screenshots/admin-dashboard.jpeg)
+
+
 ## Technology Stack
 
 ### Core Framework

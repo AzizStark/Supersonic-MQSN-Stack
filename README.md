@@ -2,6 +2,23 @@
 
 This project demonstrates a cutting-edge full-stack application architecture using the **MQSN stack** - a modern alternative to traditional MERN/MEAN stacks, designed for superior performance and developer experience.
 
+![Quintessa Book Shop](screenshots/Quintessa%20Book%20Shop.jpeg)
+
+## Application Screenshots
+
+Here are some key views from the application that showcase the MQSN stack's capabilities:
+
+<table>
+  <tr>
+    <td><img src="screenshots/homepage_book-gallery.jpeg" alt="Book Gallery" width="100%"/></td>
+    <td><img src="screenshots/admin-dashboard.jpeg" alt="Admin Dashboard" width="100%"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/poetry.jpeg" alt="Poetry Page" width="100%"/></td>
+    <td><img src="screenshots/login-page.jpeg" alt="Authentication" width="100%"/></td>
+  </tr>
+</table>
+
 ## What is the MQSN Stack?
 
 The MQSN stack represents:
@@ -74,6 +91,26 @@ The MQSN stack represents:
 | Developer Experience | ★★★★☆ | ★★★★☆ | ★★★☆☆ |
 | Enterprise Readiness | ★★★★★ | ★★★☆☆ | ★★★★☆ |
 | Bundle Size | ★★★★★ | ★★★☆☆ | ★★☆☆☆ |
+
+## Featured Components
+
+### User Authentication
+
+![Signup Page](screenshots/signup.jpeg)
+
+The authentication system uses JWT tokens with public/private key signing for secure user management. The simple but effective forms are built with SolidJS's reactive primitives.
+
+### Book Inventory Management
+
+![Inventory Management](screenshots/inventory-page_booklist.jpeg)
+
+Administrators can manage the book inventory through an intuitive interface that demonstrates SolidJS's efficient DOM updates and Quarkus's reactive backend.
+
+### Book Editing Form
+
+![Book Editing](screenshots/inventory-page_book-edit%20form.jpeg)
+
+The application includes forms for adding and editing books, showcasing SolidJS's form handling capabilities and seamless integration with the backend.
 
 ## Project Architecture
 
